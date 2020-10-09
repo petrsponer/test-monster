@@ -1,14 +1,14 @@
-import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
-import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SavedJobsPage extends AbstractPage {
 
     private static final String URL = "https://www.monsterworksdemo.com/savedJobs/";
-    private static final By BY_PHILIPS_JOBS = By.linkText("Philips Jobs");
-    private SelenideElement philipsJobsBtn;
+    final static Logger LOG = LoggerFactory.getLogger(SavedJobsPage.class);
 
     @Override protected String getPageURL() {
         return URL;
@@ -20,9 +20,11 @@ public class SavedJobsPage extends AbstractPage {
     public void checkJobName(String jobName) {
         try {
             $(By.xpath("//*[contains(text(),'" + jobName + "'")).exists();
-            System.out.println(jobName + "exist on saved page");
+            LOG.info(jobName + " exist on saved page");
         } catch (Exception e) {
-            System.out.println(jobName + "does not exist on saved page");
+            String message = jobName + " does not exist on saved page";
+            LOG.error(message);
+            Assert.fail(message);
         }
     }
 
