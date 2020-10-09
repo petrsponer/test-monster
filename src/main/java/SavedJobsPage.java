@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
+import static java.lang.String.format;
 
 public class SavedJobsPage extends AbstractPage {
 
@@ -18,14 +19,13 @@ public class SavedJobsPage extends AbstractPage {
     }
 
     public void checkJobName(String jobName) {
-        try {
-            $(By.xpath("//*[contains(text(),'" + jobName + "'")).exists();
-            LOG.info(jobName + " exist on saved page");
-        } catch (Exception e) {
-            String message = jobName + " does not exist on saved page";
-            LOG.error(message);
-            Assert.fail(message);
-        }
+            if ($(By.xpath("//*[contains(text(),'" + jobName + "'")).exists()) {
+                LOG.info("{} exist on saved page", jobName);
+            } else {
+                String message = format("%s does not exist on saved page", jobName);
+                LOG.error(message);
+                Assert.fail(message);
+            }
     }
 
 }

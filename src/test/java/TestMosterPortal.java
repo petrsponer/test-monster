@@ -23,12 +23,12 @@ public class TestMosterPortal extends AbstractTest {
 
     @Test(dependsOnMethods = "createAccount") public void getToSearchPhilipsJobsPage() throws InterruptedException {
         DashboardPage dashboardPage = createPageWithAssert(DashboardPage.class);
-        Thread.sleep(4000); // this is a bad practice, should be better be checking in a loop but it seems not to work for unknown reason
+        Thread.sleep(4000); // this is a bad practice, should be better checking in a loop but it seems not to work for unknown reason
         dashboardPage.clickPhilipsJobs();
     }
 
     @Test(dependsOnMethods = "getToSearchPhilipsJobsPage") public void saveJobs() {
-        SearchPhilipsJobsPage searchPhilipsJobsPage = createPageWithAssert(SearchPhilipsJobsPage.class);
+       SearchPhilipsJobsPage searchPhilipsJobsPage = createPageWithAssert(SearchPhilipsJobsPage.class);
         ElementsCollection jobs = searchPhilipsJobsPage.getJobsCollection();
 
         secondJobName = searchPhilipsJobsPage.clickItem(jobs.get(1));

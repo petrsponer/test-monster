@@ -21,7 +21,7 @@ public class CreateAccountPage extends AbstractPage {
     }
 
     @Override protected void tryOpenConditions() {
-        $(By.id("c_elem_0")).waitUntil(visible, 20000);
+        $(By.id("c_elem_0")).waitUntil(visible, DEFAULT_WAIT_TIME);
         $(CREATE_ACCOUNT_SELECTOR).shouldBe(disabled);
     }
 

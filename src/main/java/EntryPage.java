@@ -19,7 +19,7 @@ public class EntryPage extends AbstractPage {
 
     @Override protected void tryOpenConditions() {
         createAccoutBtn = $(BY_CREATE_ACCOUNT);
-        createAccoutBtn.waitUntil(visible, 20000);
+        createAccoutBtn.waitUntil(visible, DEFAULT_WAIT_TIME);
     }
 
     public void clickCreateAccout() {

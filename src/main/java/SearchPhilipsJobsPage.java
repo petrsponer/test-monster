@@ -24,7 +24,7 @@ public class SearchPhilipsJobsPage extends AbstractPage {
     }
 
     @Override protected void tryOpenConditions() {
-        $(byText("Philips Jobs & Careers")).waitUntil(visible, 20000);
+        $(byText("Philips Jobs & Careers")).waitUntil(visible, DEFAULT_WAIT_TIME);
     }
 
     public String clickItem(SelenideElement job) {
@@ -36,12 +36,12 @@ public class SearchPhilipsJobsPage extends AbstractPage {
     }
 
     public void saveJob() {
-        $(By.linkText("Save")).waitUntil(visible, 20000);
+        $(By.linkText("Save")).waitUntil(visible, DEFAULT_WAIT_TIME);
         $(By.linkText("Save")).click();
     }
 
     public void assertJobSaved() {
-        $(By.id("SaveJob")).$(By.className("label")).waitUntil(visible, 10000);
+        $(By.id("SaveJob")).$(By.className("label")).waitUntil(visible, DEFAULT_WAIT_TIME);
         assertEquals($(By.id("SaveJob")).$(By.className("label")).getText(), SAVED);
     }
 
