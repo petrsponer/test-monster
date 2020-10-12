@@ -1,10 +1,8 @@
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
-import static java.lang.String.format;
 
 public class SavedJobsPage extends AbstractPage {
 
@@ -18,14 +16,8 @@ public class SavedJobsPage extends AbstractPage {
     @Override protected void tryOpenConditions() {
     }
 
-    public void checkJobName(String jobName) {
-            if ($(By.xpath("//*[contains(text(),'" + jobName + "'")).exists()) {
-                LOG.info("{} exist on saved page", jobName);
-            } else {
-                String message = format("%s does not exist on saved page", jobName);
-                LOG.error(message);
-                Assert.fail(message);
-            }
+    public boolean isJobSaved(String jobName) {
+        return $(By.xpath("//*[contains(text(),'" + jobName + "'")).exists();
     }
 
 }

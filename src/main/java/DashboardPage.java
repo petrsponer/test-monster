@@ -18,7 +18,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Override protected void tryOpenConditions() {
-        philipsJobsBtn = $(BY_PHILIPS_JOBS).waitUntil(exist, DEFAULT_WAIT_TIME);
+        philipsJobsBtn = $(BY_PHILIPS_JOBS).should(exist);
     }
 
     public void clickPhilipsJobs() {

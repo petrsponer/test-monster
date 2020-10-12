@@ -27,7 +27,7 @@ public class SearchPhilipsJobsPage extends AbstractPage {
         $(byText("Philips Jobs & Careers")).waitUntil(visible, DEFAULT_WAIT_TIME);
     }
 
-    public String clickItem(SelenideElement job) {
+    public String selectJob(SelenideElement job) {
         return clickJobAndGetName(job);
     }
 
@@ -35,14 +35,14 @@ public class SearchPhilipsJobsPage extends AbstractPage {
          return $$(By.xpath("//div[@class='mux-search-results']/div/section/div"));
     }
 
-    public void saveJob() {
+    public void clickSaveJob() {
         $(By.linkText("Save")).waitUntil(visible, DEFAULT_WAIT_TIME);
         $(By.linkText("Save")).click();
     }
 
-    public void assertJobSaved() {
+    public boolean isJobSaved() {
         $(By.id("SaveJob")).$(By.className("label")).waitUntil(visible, DEFAULT_WAIT_TIME);
-        assertEquals($(By.id("SaveJob")).$(By.className("label")).getText(), SAVED);
+        return SAVED.equals($(By.id("SaveJob")).$(By.className("label")).getText());
     }
 
     public void goToSavedJobs() {

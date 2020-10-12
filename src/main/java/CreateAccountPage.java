@@ -1,3 +1,4 @@
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +10,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class CreateAccountPage extends AbstractPage {
 
+    // todo - part the URL
     private static final String URL = "https://www.monsterworksdemo.com/account/account-lite";
     private static final String PASSWORD = "Gogol-483";
     private static final String EMAIL_BASE = "@pojem.cz";
     private static final String WHERE_DID_YOU_HEAR_ITEM_NAME = "number:89314";
-    private static final String CREATE_ACCOUNT_SELECTOR = "#main-content > div > div.ng-scope > div > ng-form > div > div > div:nth-child(8) > div > button:nth-child(2)";
-    final static Logger LOG = LoggerFactory.getLogger(SavedJobsPage.class);
+    private static final By BY_CREATE_ACCOUNT_SELECTOR = By.xpath("//button[contains(text(),'Create an account')]");
+    final static Logger LOG = LoggerFactory.getLogger(CreateAccountPage.class);
 
     @Override protected String getPageURL() {
         return URL;
@@ -22,16 +24,17 @@ public class CreateAccountPage extends AbstractPage {
 
     @Override protected void tryOpenConditions() {
         $(By.id("c_elem_0")).waitUntil(visible, DEFAULT_WAIT_TIME);
-        $(CREATE_ACCOUNT_SELECTOR).shouldBe(disabled);
+        $(BY_CREATE_ACCOUNT_SELECTOR).shouldBe(disabled);
     }
 
     public void clickCreateAccout() {
-        $(CREATE_ACCOUNT_SELECTOR).shouldBe(enabled);
-        $(CREATE_ACCOUNT_SELECTOR).click();
+        SelenideElement createAccountBtn = $(BY_CREATE_ACCOUNT_SELECTOR);
+        createAccountBtn.shouldBe(enabled);
+        createAccountBtn.click();
         LOG.info("Creating Account");
     }
-
-    public void prepareAccountData() {
+// todo - best be test data moved out of the class
+    public CreateAccountPage prepareAccountData() {
         String email = UUID.randomUUID().toString() + EMAIL_BASE;
         $(By.id("c_elem_0")).setValue(email);
         $(By.id("a_elem_1")).setValue(PASSWORD);
@@ -40,5 +43,6 @@ public class CreateAccountPage extends AbstractPage {
         $(By.id("id_option_label_elem_5-true")).click(); // consent
 
         LOG.info("Filled data for a new account. Email: {}, Password: {}", email, PASSWORD);
+        return this;
     }
 }
