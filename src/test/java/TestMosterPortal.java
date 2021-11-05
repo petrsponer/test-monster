@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 /*
 * This is a just an example how to do things. Best be the tests independent (create account, login to pre-existing account,
 * save jobs...)
-* however for the test purpose it is intentionly created as sequence of dependent tests.
+* however for the test purpose it is intentionally created as a sequence of dependent tests.
 * */
 public class TestMosterPortal extends AbstractTest {
 
